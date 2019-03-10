@@ -1,3 +1,5 @@
+#Product Dictionary and variables
+
 Product_dictionary =	{
   "banana": 1.19,
   "ice": 2,
@@ -12,10 +14,11 @@ PLU_list = [banana_PLU, ice_PLU, cereal_PLU,]
 sales_list = []
 sales_list_dict = {}
 
-#products variables, name and price
 banana = float(1.2)
 ice = float(2)
 cereal = float(3.2)
+
+#Tkinter Main
 
 from tkinter import *
 
@@ -26,8 +29,11 @@ root.title("CASH till operator")
 root.geometry('800x600')
 leftFrame = Frame(root)
 leftFrame.pack(side=LEFT, expand=True, fill='both')
-#rightFrame = Frame(root)         in case I need to add something on the right side like display??
-#rightFrame.pack(side=RIGHT, expand=True, fill='both')
+rightFrame = Frame(root)
+rightFrame.pack(side=RIGHT, expand=True, fill='both')
+
+
+#GUI Main menu
 
 lbl = Label(leftFrame, text="Choose item", font=("Arial Bold", 40), bg="blue")
 lbl.pack(expand=True,fill='both')
@@ -35,6 +41,8 @@ lbl.pack(expand=True,fill='both')
 txt = Entry(leftFrame, width=10, bg="yellow", font=("Arial Bold", 40), fg="black")
 txt.pack(expand=True,fill='both')
 
+
+#Functions (button commands)
 
 def off_sale():
     messagebox.showwarning('auto_finder', 'not found try again')
@@ -103,11 +111,36 @@ def reset():
     sales_list.clear()
     lbl.configure(text=sales_list)
 
+
+def discount():
+    res = sales_list[-1]
+    res1 = (res / 2)
+    sales_list.pop()
+    sales_list.append(res1)
+    lbl.configure(text=sales_list)
+
+def logout():
+    root.destroy()
+
+def find():
+    res = txt.get()
+    if res in Product_dictionary:
+        lbl.configure(text=Product_dictionary[res])
+    else:
+        messagebox.showwarning('Product not found')
+
+
+
+
+
 btn1 = Button(leftFrame, text="Add to the basket", font=("Arial Bold", 25), bg="blue", fg="black", command=register)
 btn2 = Button(leftFrame, text="Void", font=("Arial Bold", 25), bg="blue", fg="black", command=void)
 btn3 = Button(leftFrame, text="Subtotal", font=("Arial Bold", 25), bg="blue", fg="black", command=subtotal)
 btn4 = Button(leftFrame, text="Total", font=("Arial Bold", 25), bg="blue", fg="black", command=total)
-btn5 = Button(leftFrame, text="Reset", font=("Arial Bold", 25), bg="blue", fg="black", command=reset)
+btn5 = Button(leftFrame, text="Reset", font=("Arial Bold", 25), bg="red", fg="black", command=reset)
+btn7 = Button(leftFrame, text="Discount 50%", font=("Arial Bold", 25), bg="blue", fg="black", command=discount)
+btn8 = Button(leftFrame, text="Find price", font=("Arial Bold", 25), bg="blue", fg="black", command=find)
+btn9 = Button(leftFrame, text="Log out", font=("Arial Bold", 25), bg="blue", fg="black", command=logout)
 
 spin = Spinbox(leftFrame, values = (1, 2, 3, 4, 5, 6, 7, 8, 9 ), width=5, font=("Arial Bold", 25))
 spin.pack(expand=True,fill='both')
@@ -117,6 +150,9 @@ btn2.pack(expand=True,fill='both')
 btn3.pack(expand=True,fill='both')
 btn4.pack(expand=True,fill='both')
 btn5.pack(expand=True,fill='both')
+btn7.pack(expand=True,fill='both')
+btn8.pack(expand=True,fill='both')
+btn9.pack(expand=True,fill='both')
 
 
 root.mainloop()
