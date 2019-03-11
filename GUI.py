@@ -23,6 +23,8 @@ cereal = float(3.2)
 from tkinter import *
 
 from tkinter import messagebox
+# noinspection PyUnresolvedReferences
+from PIL import ImageTk, Image
 
 root = Tk()
 root.title("CASH till operator")
@@ -31,12 +33,15 @@ leftFrame = Frame(root)
 leftFrame.pack(side=LEFT, expand=True, fill='both')
 rightFrame = Frame(root)
 rightFrame.pack(side=RIGHT, expand=True, fill='both')
+img = ImageTk.PhotoImage(Image.open(r"C:\Users\Vladimir\Desktop\test.jpg"))
+
 
 
 #GUI Main menu
 
 lbl = Label(leftFrame, text="Choose item", font=("Arial Bold", 40), bg="blue")
 lbl.pack(expand=True,fill='both')
+
 
 txt = Entry(leftFrame, width=10, bg="yellow", font=("Arial Bold", 40), fg="black")
 txt.pack(expand=True,fill='both')
@@ -53,13 +58,14 @@ def register():
     res2 = spin.get()
     if res == banana_PLU:
         sales_list.append(round(banana * float(res2), 2))
-        lbl.configure(text= res2+" " "added to the basket")
+        lbl.configure(text= sales_list)
+
     elif res == ice_PLU:
         sales_list.append(ice * float(res2))
-        lbl.configure(text= res2+" " "added to the basket")
+        lbl.configure(text= sales_list)
     elif res == cereal_PLU:
         sales_list.append(cereal * float(res2))
-        lbl.configure(text= res2+" " "added to the basket")
+        lbl.configure(text= sales_list)
     else:
         off_sale()
 
@@ -137,10 +143,11 @@ btn1 = Button(leftFrame, text="Add to the basket", font=("Arial Bold", 25), bg="
 btn2 = Button(leftFrame, text="Void", font=("Arial Bold", 25), bg="blue", fg="black", command=void)
 btn3 = Button(leftFrame, text="Subtotal", font=("Arial Bold", 25), bg="blue", fg="black", command=subtotal)
 btn4 = Button(leftFrame, text="Total", font=("Arial Bold", 25), bg="blue", fg="black", command=total)
-btn5 = Button(leftFrame, text="Reset", font=("Arial Bold", 25), bg="red", fg="black", command=reset)
-btn7 = Button(leftFrame, text="Discount 50%", font=("Arial Bold", 25), bg="blue", fg="black", command=discount)
-btn8 = Button(leftFrame, text="Find price", font=("Arial Bold", 25), bg="blue", fg="black", command=find)
-btn9 = Button(leftFrame, text="Log out", font=("Arial Bold", 25), bg="blue", fg="black", command=logout)
+btn5 = Button(rightFrame, text="Reset", font=("Arial Bold", 25), bg="red", fg="black", command=reset)
+btn7 = Button(rightFrame, text="Discount 50%", font=("Arial Bold", 25), bg="blue", fg="black", command=discount)
+btn8 = Button(rightFrame, text="Find price", font=("Arial Bold", 25), bg="blue", fg="black", command=find)
+btn9 = Button(rightFrame, text="Log out", font=("Arial Bold", 25), bg="blue", fg="black", command=logout)
+btn10 = Button(rightFrame, image=img)
 
 spin = Spinbox(leftFrame, values = (1, 2, 3, 4, 5, 6, 7, 8, 9 ), width=5, font=("Arial Bold", 25))
 spin.pack(expand=True,fill='both')
@@ -153,6 +160,6 @@ btn5.pack(expand=True,fill='both')
 btn7.pack(expand=True,fill='both')
 btn8.pack(expand=True,fill='both')
 btn9.pack(expand=True,fill='both')
-
+btn10.pack(expand=True,fill='both')
 
 root.mainloop()
