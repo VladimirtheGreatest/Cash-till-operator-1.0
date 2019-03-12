@@ -1,9 +1,9 @@
 #Product Dictionary and variables
 
 Product_dictionary =	{
-  "banana": 1.19,
+  "banana": 1.2,
   "ice": 2,
-  "cereal": 3.19
+  "cereal": 3.2
 }
 
 banana_PLU = ("banana")
@@ -135,6 +135,10 @@ def find():
     else:
         messagebox.showwarning('Product not found')
 
+def clear():
+    txt.delete(first=0,last=100)
+
+
 
 
 
@@ -148,6 +152,7 @@ btn7 = Button(rightFrame, text="Discount 50%", font=("Arial Bold", 25), bg="blue
 btn8 = Button(rightFrame, text="Find price", font=("Arial Bold", 25), bg="blue", fg="black", command=find)
 btn9 = Button(rightFrame, text="Log out", font=("Arial Bold", 25), bg="blue", fg="black", command=logout)
 btn10 = Button(rightFrame, image=img)
+btn11 = Button(rightFrame, text="Clear", font=("Arial Bold", 25), bg="blue", fg="black", command=clear)
 
 spin = Spinbox(leftFrame, values = (1, 2, 3, 4, 5, 6, 7, 8, 9 ), width=5, font=("Arial Bold", 25))
 spin.pack(expand=True,fill='both')
@@ -161,5 +166,12 @@ btn7.pack(expand=True,fill='both')
 btn8.pack(expand=True,fill='both')
 btn9.pack(expand=True,fill='both')
 btn10.pack(expand=True,fill='both')
+btn11.pack(expand=True,fill='both')
+
 
 root.mainloop()
+
+
+
+
+
